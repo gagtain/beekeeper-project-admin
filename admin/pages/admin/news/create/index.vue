@@ -162,12 +162,14 @@
     </div>
   </div>
 </template>
-
+<style src="~/assets/styles/main.scss" lang="scss">
+</style>
 <script>
-import ImageObj from "../../components/NewsConstructor/Image.vue";
-import ImageRel from "../../components/NewsConstructor/Pred_rel/ImageRel.vue";
-import TextAreaRel from "../../components/NewsConstructor/Pred_rel/TextAreaRel.vue";
-import TextArea from "../../components/NewsConstructor/TextArea.vue";
+import ImageObj from "~/components/NewsConstructor/Image.vue";
+import ImageRel from "~/components/NewsConstructor/Pred_rel/ImageRel.vue";
+import TextAreaRel from "~/components/NewsConstructor/Pred_rel/TextAreaRel.vue";
+import TextArea from "~/components/NewsConstructor/TextArea.vue";
+import newsCreate from "~/http/news/newsCreate"
 import axios from "axios";
 export default {
   components: { TextArea, ImageObj, TextAreaRel, ImageRel },
@@ -253,14 +255,7 @@ export default {
       );
       form.append("title", this.name);
       form.append("main_text", this.get_main_title());
-      axios({
-        url: "http://localhost:8000/api/v0.1/news/create",
-        method: "post",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        data: form,
-      });
+      newsCreate(form)
     },
   },
 };

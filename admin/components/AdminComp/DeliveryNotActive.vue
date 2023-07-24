@@ -1,13 +1,15 @@
 <template>
   <article>
     <div class="order-not-active">
-        <p class="small">Всего неактивных доставок: <span style="color: blue;">100</span> </p>
+        <p class="small">Всего неактивных доставок: <span style="color: blue;">{{ count_delivery }}</span> </p>
         
-        <NuxtLink to="/delivery/not-active" no-prefetch><button class="btn">Посмотреть</button></NuxtLink>
+        <NuxtLink to="/admin/delivery/not-active" no-prefetch><button class="btn">Посмотреть</button></NuxtLink>
     </div>
   </article>
 </template>
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style  scoped>
 .order-not-active{
     padding: 3%;
     width: 100%;
@@ -24,8 +26,17 @@
 }
 </style>
 <script>
+import searchCoundDelivery from '~/http/delivery/SearchCountDelivery'
 export default {
-
+  data(){
+    return {
+      count_delivery: null
+    }
+  },
+  async mounted(){
+    let r = await searchCoundDelivery("status=На проверке")
+    this.count_delivery = r.data.count
+  }
 }
 </script>
 

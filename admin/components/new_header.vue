@@ -16,18 +16,24 @@
         <h3>Admin</h3>
       </li>
       <li>
-        <nuxt-link to="/orders"><span>Заказы</span></nuxt-link>
+        <nuxt-link to="/admin"><span>Главная</span></nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/delivery"><span>Доставки</span></nuxt-link>
+        <nuxt-link to="/admin/orders"><span>Заказы</span></nuxt-link>
       </li>
       <li>
-        <a href="#0">
+        <nuxt-link to="/admin/delivery"><span>Доставки</span></nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/admin/delivery"><span>Новости</span></nuxt-link>
+      </li>
+      <li>
+        <nuxt-link no-prefetch to="/admin/news/create">
           <svg>
             <use xlink:href="#trends"></use>
           </svg>
-          <span>Trends</span>
-        </a>
+        <span>Создать новость</span>
+      </nuxt-link>
       </li>
       <li>
         <a href="#0">
@@ -100,7 +106,7 @@
 </header>
 </template>
 
-<style src="~/assets/styles/new.css">
+<style src="~/assets/styles/new.css"  scoped>
 </style>
 
 <script>
