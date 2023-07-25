@@ -13,4 +13,4 @@ export default{
   components:{headers, new_header, Page_contend}
 }
 
-</
+</script>

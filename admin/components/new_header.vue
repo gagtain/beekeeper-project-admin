@@ -25,7 +25,7 @@
         <nuxt-link to="/admin/delivery"><span>Доставки</span></nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/admin/delivery"><span>Новости</span></nuxt-link>
+        <nuxt-link to="/admin/news"><span>Новости</span></nuxt-link>
       </li>
       <li>
         <nuxt-link no-prefetch to="/admin/news/create">
