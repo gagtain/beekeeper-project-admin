@@ -12,7 +12,7 @@
         </button>
         <button
           v-if="
-            order.status == 'Не одобренный' && order.payment == 'succeeded'
+            order.status == 'Не одобренный' && order.payment.status == 'succeeded'
           "
           class="btn"
           @click="submit_order()"
