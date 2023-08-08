@@ -103,11 +103,13 @@ export default {
     }, 
     async mounted(){
         let filter = ''
-        if (this.$route.query.status){
-            filter = `status=${this.$route.query.status}`
+        let add_str = ''
+        if (this.$route.query.filter){
+            filter = this.$route.query.filter
+            add_str = '&'
         }
-        await this.getPaginationOrder('', this.page) 
-        let countDilivery = await searchCountOrders('')
+        await this.getPaginationOrder(filter + add_str, this.page) 
+        let countDilivery = await searchCountOrders(filter)
         this.total = Math.ceil(countDilivery.data.count/2)
     },
     methods: {
@@ -120,6 +122,7 @@ export default {
         },
         async getPaginationOrder(params, number){
             this.params = params
+            console.log(params)
             let ord = await SearchOrders(params, number*2 - 2, 2)
             this.order_list = ord.data
             console.log(ord.data)

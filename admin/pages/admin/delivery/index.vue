@@ -107,8 +107,15 @@ export default {
     }, 
 
     async mounted(){
-        let r = await this.getPaginationDelivery('', this.page) 
-        let countDilivery = await searchCountDelivery('')
+        let default_filter = this.$route.query.filter
+        let add_str = ''
+        if (!default_filter){
+            default_filter = ''
+        }else{
+            add_str = '&'
+        }
+        let r = await this.getPaginationDelivery(default_filter + add_str, this.page) 
+        let countDilivery = await searchCountDelivery(default_filter)
         this.total = Math.ceil(countDilivery.data.count/2)
     
     },

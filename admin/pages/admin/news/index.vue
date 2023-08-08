@@ -2,7 +2,7 @@
     <div v-if="news">
 
         <section class="grid">
-    <article style="padding: 3%; display: flex; height: auto; min-height: 300px;">
+    <article v-if="news[0]" style="padding: 3%; display: flex; height: auto; min-height: 300px;">
         <div class="container">
             <h4 class="main_news_title">{{ news[0].title }} </h4>
             <br>

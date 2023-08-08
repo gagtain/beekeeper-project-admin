@@ -6,7 +6,7 @@
             order.status == 'Одобрен'
           "
           class="btn"
-          @click="submit_waiting"
+          @click="submit_waiting()"
         >
           Подтвердить доставку
         </button>
@@ -30,7 +30,8 @@
         v-on:order_status_closed="order_status_closed"
           v-if="
             delivery.status == 'На проверке' &&
-            order.status != 'Одобрен'
+            order.status != 'Одобрен' &&
+            order.payment.status != 'succeeded'
           " :order="order">
           </order-status-closed>
         <button class="btn" v-if="delivery.status == 'Отправлен'">
@@ -70,9 +71,15 @@ export default {
       this.$emit('submit_order')
     },
     order_status_closed(event){
-      console.log(event)
-      this.delivery.order_delivery_transaction[0] = event
+      try{
+
+        console.log(event)
+      this.order = event
       this.delivery.status = "Отменен"
+      }catch{
+        
+      this.$emit('order_status_closed', event)
+      }
     }
     },
 }
