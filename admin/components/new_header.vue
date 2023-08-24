@@ -1,5 +1,5 @@
 <template>
-    <header class="page-header">
+  <header v-show="showContent" class="page-header">
   <nav>
     <a href="#0" aria-label="forecastr logo" class="logo">
       <svg width="140" height="49">
@@ -111,9 +111,28 @@
 
 <script>
 export default {
+    data() {
+      return{
+      showContent: true,
+      }
+    },
     setup() {
         
     },
+    created(){
+      if (this.$route.path == '/admin/login'){
+        this.showContent = false
+      }
+    },
+    watch: {
+    '$route.path'() {
+      if (this.$route.path != '/admin/login'){
+        this.showContent = true
+      } else {
+        this.showContent = false
+      }
+    }
+  },
     mounted(){
       const html = document.documentElement;
 const body = document.body;

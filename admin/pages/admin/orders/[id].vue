@@ -91,11 +91,11 @@
             class="spoiler_content"
           >
             <p>Высота</p>
-            <input disabled v-model="pack.height" type="text" />
+            <input v-model="pack.height" type="text" />
             <p>Длина</p>
-            <input disabled v-model="pack.length" type="text" />
+            <input v-model="pack.length" type="text" />
             <p>Вес</p>
-            <input disabled v-model="pack.weight" type="text" />
+            <input v-model="pack.weight" type="text" />
             <p>Ширина</p>
             <input v-model="pack.width" type="text" />
             <p align="center">Товары</p>
@@ -245,9 +245,10 @@ export default {
     let r = await getOrder(this.$route.params.id);
     this.order = r.data;
 
+
     let r1 = await getInfoDelivery(this.order.delivery.id);
     this.dilevery_info = r1.data;
-    console.log(r1.data);
+
   },
   methods: {
     delivery_info_submit(data) {
@@ -307,7 +308,11 @@ export default {
       });
     },
     async deliveryInit() {
-      await initDeviverySdek(this.dilevery_info, this.order.delivery.id)
+      let r = await initDeviverySdek(this.order.delivery.id, this.dilevery_info)
+      if (r.status == 200){
+        alert('Запрос отправлен успешно')
+        location.reload();
+      }
     }
   },
 };
